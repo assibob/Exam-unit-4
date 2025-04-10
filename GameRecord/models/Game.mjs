@@ -28,4 +28,34 @@ export default class Game {
     getSummary() {
       return `${this.title} (${this.year}) by ${this.designer} – ${this.players} players, ${this.time}, Difficulty: ${this.difficulty}`;
     }
+
+    saveToLocalStorage() {
+      const gameKey = `game_${this.title.replace(/\s+/g, '_')}_${this.year}`;
+      localStorage.setItem(gameKey, JSON.stringify(this));
+    }
+
+    static getAllGamesFromLocalStorage() {
+      const games = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('game_')) {
+          const gameData = JSON.parse(localStorage.getItem(key));
+          games.push(gameData);
+        }
+      }
+      return games;
+    }
+
+    static exportGamesAsJSON() {
+      const games = Game.getAllGamesFromLocalStorage();
+      return JSON.stringify(games, null, 2);
+    }
+
+    static importGamesFromJSON(jsonData) {
+      const games = JSON.parse(jsonData);
+      games.forEach(gameData => {
+        const game = new Game(gameData);
+        game.saveToLocalStorage();
+      });
+    }
 }
