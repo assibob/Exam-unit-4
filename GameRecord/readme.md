@@ -22,3 +22,17 @@ Implemented a loadGames function to populate the games array when the applicatio
 Used the FileReader API in app.mjs to read JSON files and import game data into localStorage using the Game.importGamesFromJSON method
 Attached an event listener to the file input to trigger the import process when a file is selected
 Updated the games array after importing games to ensure it stays in sync with localStorage
+
+Step 5: Visual Representation of Games:
+Added a renderGames function in app.mjs to dynamically display all games in the gameContainer div in index.html.
+Each game is displayed with the following details:
+  Title and year
+  Designer
+  Number of players
+  Playtime
+  Difficulty
+  Play count
+  Personal rating
+Included a range input input type="range" for adjusting the personal rating and a delete button button for each game.
+Updated the loadGames function to call renderGames after loading games from localStorage, ensuring the UI is updated whenever the application starts or games are imported.
+Added a container div id="gameContainer" in index.html to hold the visual representation of the games.
