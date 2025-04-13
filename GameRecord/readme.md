@@ -77,3 +77,20 @@ Implemented an event listener in app.mjs to detect changes in the dropdown menu:
   When a sorting option is selected, the games array is sorted based on the chosen criteria.
   After sorting, the renderGames function is called to update the UI with the newly sorted list.
 This feature allows users to organize their game collection dynamically, making it easier to find and prioritize games based on their preferences.
+
+Step 11: Styling the Game Display
+Updated the style.css file to improve the visual appearance of the game listing.
+Styled the game container and individual game cards to make them visually appealing:
+  Added borders, rounded corners, and subtle shadows to each game card.
+  Used a light background color for better readability.
+Enhanced the game title with larger font size and bold color to make it stand out.
+Styled the game details with consistent font size and spacing for better readability.
+Improved the appearance of the BGG link:
+  Added a blue color and underline on hover for better interactivity.
+Styled the play count increment button:
+  Added a blue background with white text and hover effects.
+Styled the rating slider for better alignment and spacing.
+Added styles for the "Delete" and "Edit" buttons:
+  "Delete" button has a red background with hover effects.
+  "Edit" button has a green background with hover effects.
+These changes make the application visually appealing and easier to use, aligning with the example provided.

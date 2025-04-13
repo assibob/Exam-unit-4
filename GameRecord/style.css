@@ -1,0 +1,79 @@
+#gameContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.game {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.game h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.game p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #555;
+}
+
+.game a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.game a:hover {
+    text-decoration: underline;
+}
+
+.increment-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.increment-button:hover {
+    background-color: #0056b3;
+}
+
+.rating-slider {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.delete-button, .edit-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.edit-button {
+    background-color: #28a745;
+}
+
+.edit-button:hover {
+    background-color: #218838;
+}
