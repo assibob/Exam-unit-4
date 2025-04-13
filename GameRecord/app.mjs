@@ -126,3 +126,25 @@ function updateGameInLocalStorage(index, updatedGame) {
     const gameKey = `game_${updatedGame.title.replace(/\s+/g, '_')}_${updatedGame.year}`;
     localStorage.setItem(gameKey, JSON.stringify(updatedGame));
 }
+
+// Handle sorting
+document.getElementById('sortOptions').addEventListener('change', (event) => {
+    const sortBy = event.target.value;
+
+    // Sort the games array based on the selected option
+    games.sort((a, b) => {
+        if (sortBy === 'players') {
+            const playersA = parseInt(a.players.split('-')[0], 10);
+            const playersB = parseInt(b.players.split('-')[0], 10);
+            return playersA - playersB;
+        } else if (sortBy === 'rating') {
+            return b.personalRating - a.personalRating;
+        } else if (sortBy === 'difficulty') {
+            return a.difficulty.localeCompare(b.difficulty);
+        } else if (sortBy === 'playCount') {
+            return b.playCount - a.playCount;
+        }
+    });
+
+    renderGames();
+});

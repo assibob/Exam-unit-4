@@ -65,3 +65,15 @@ Implemented the deleteGame function in app.mjs to handle the deletion process:
   Removes the game from the in-memory games array using the splice method.
   Re-renders the game list to reflect the changes in the UI.
 This feature allows users to easily manage their game collection by removing unwanted entries.
+
+Step 10: Sorting Games
+Added a dropdown menu in index.html to allow users to sort the game listing by different criteria.
+The dropdown includes the following sorting options:
+  **Players**: Sorts games by the minimum number of players
+  **Rating**: Sorts games by personal rating in descending order.
+  **Difficulty**: Sorts games alphabetically by difficulty level.
+  **Play Count**: Sorts games by the number of times the game has been played in descending order.
+Implemented an event listener in app.mjs to detect changes in the dropdown menu:
+  When a sorting option is selected, the games array is sorted based on the chosen criteria.
+  After sorting, the renderGames function is called to update the UI with the newly sorted list.
+This feature allows users to organize their game collection dynamically, making it easier to find and prioritize games based on their preferences.
