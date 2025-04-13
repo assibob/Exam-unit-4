@@ -45,7 +45,7 @@ Ensured that changes to the play count and rating are saved to both the in-memor
 Created a helper function updateGameInLocalStorage to handle saving updated game data to localStorage whenever a change is made.
 These changes make the application more dynamic and allow users to track their game stats directly from the UI.
 
-Step 7: Adding New Games:
+Step 7 and 8: Adding New Games:
 Added a form in index.html to allow users to add new games to the listing.
 The form collects details like title, designer, year, players, play count, and personal rating.
 Implemented a submit event listener in app.mjs to handle form submissions:
@@ -54,3 +54,4 @@ Implemented a submit event listener in app.mjs to handle form submissions:
   Re-renders the game list to include the newly added game.
   Resets the form after submission for convenience.
 This feature allows users to expand their game collection directly from the UI.
+I did both step 7 and 8 by mistake
