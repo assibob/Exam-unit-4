@@ -13,23 +13,37 @@ function loadGames() {
 // Render games in the UI
 function renderGames() {
     const gameContainer = document.getElementById('gameContainer');
-    gameContainer.innerHTML = '';
+    gameContainer.innerHTML = ''; 
 
-    games.forEach(game => {
+    games.forEach((game, index) => {
         const gameElement = document.createElement('div');
         gameElement.classList.add('game');
 
         gameElement.innerHTML = `
-            <h2>${game.title} (${game.year})</h2>
+            <h2>${game.title}</h2>
+            <p><strong>Year:</strong> ${game.year} <strong>Players:</strong> ${game.players} <strong>Time:</strong> ${game.time} <strong>Difficulty:</strong> ${game.difficulty}</p>
             <p><strong>Designer:</strong> ${game.designer}</p>
-            <p><strong>Players:</strong> ${game.players}</p>
-            <p><strong>Time:</strong> ${game.time}</p>
-            <p><strong>Difficulty:</strong> ${game.difficulty}</p>
-            <p><strong>Play Count:</strong> ${game.playCount}</p>
-            <p><strong>Personal Rating:</strong> ${game.personalRating}</p>
-            <input type="range" min="1" max="10" value="${game.personalRating}" class="rating-slider">
-            <button class="delete-button">Delete</button>
+            <p><strong>Artist:</strong> ${game.artist}</p>
+            <p><strong>Publisher:</strong> ${game.publisher}</p>
+            <p><strong>BGG Listing:</strong> <a href="${game.url}" target="_blank">${game.url}</a></p>
+            <p><strong>Playcount:</strong> <span class="playcount">${game.playCount}</span> <button class="increment-button">+</button></p>
+            <p><strong>Rating:</strong> <input type="range" min="1" max="10" value="${game.personalRating}" class="rating-slider"> <span class="rating-value">${game.personalRating}</span></p>
         `;
+
+        const incrementButton = gameElement.querySelector('.increment-button');
+        incrementButton.addEventListener('click', () => {
+            game.playCount++;
+            gameElement.querySelector('.playcount').textContent = game.playCount;
+            updateGameInLocalStorage(index, game);
+        });
+
+        const ratingSlider = gameElement.querySelector('.rating-slider');
+        const ratingValue = gameElement.querySelector('.rating-value');
+        ratingSlider.addEventListener('input', () => {
+            game.personalRating = parseInt(ratingSlider.value, 10);
+            ratingValue.textContent = game.personalRating;
+            updateGameInLocalStorage(index, game);
+        });
 
         gameContainer.appendChild(gameElement);
     });
@@ -44,8 +58,8 @@ function handleFileImport(event) {
     reader.onload = function(e) {
         try {
             const jsonData = e.target.result;
-            Game.importGamesFromJSON(jsonData); // Save games to localStorage 
-            loadGames(); // Refresh the in-memory games array
+            Game.importGamesFromJSON(jsonData); 
+            loadGames(); 
             console.log("Games imported successfully!");
         } catch (error) {
             console.error("Error importing games:", error);
@@ -54,8 +68,15 @@ function handleFileImport(event) {
     reader.readAsText(file);
 }
 
-// Attach event listener to the file input
 document.getElementById('importSource').addEventListener('change', handleFileImport);
 
 // Load games into memory when the app starts
 loadGames();
+
+function updateGameInLocalStorage(index, updatedGame) {
+    games[index] = updatedGame;
+
+    // Save the updated game to localStorage
+    const gameKey = `game_${updatedGame.title.replace(/\s+/g, '_')}_${updatedGame.year}`;
+    localStorage.setItem(gameKey, JSON.stringify(updatedGame));
+}

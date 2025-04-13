@@ -36,3 +36,11 @@ Each game is displayed with the following details:
 Included a range input input type="range" for adjusting the personal rating and a delete button button for each game.
 Updated the loadGames function to call renderGames after loading games from localStorage, ensuring the UI is updated whenever the application starts or games are imported.
 Added a container div id="gameContainer" in index.html to hold the visual representation of the games.
+
+Step 6: Interactive Play Count and Rating:
+Made the play count and rating sliders interactive for each game.
+Added functionality to the "+" button next to the play count. Clicking it increases the play count for the game and updates the display immediately.
+Made the rating slider functional. Moving the slider updates the game's personal rating in real-time and displays the new value.
+Ensured that changes to the play count and rating are saved to both the in-memory games array and localStorage, so the updates persist even after refreshing the page.
+Created a helper function updateGameInLocalStorage to handle saving updated game data to localStorage whenever a change is made.
+These changes make the application more dynamic and allow users to track their game stats directly from the UI.
