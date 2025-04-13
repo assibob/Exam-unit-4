@@ -55,3 +55,13 @@ Implemented a submit event listener in app.mjs to handle form submissions:
   Resets the form after submission for convenience.
 This feature allows users to expand their game collection directly from the UI.
 I did both step 7 and 8 by mistake
+
+Step 9: Deleting Games
+Added a "Delete" button for each game in the UI.
+Clicking the "Delete" button removes the game from the games array, localStorage, and the UI.
+Implemented the deleteGame function in app.mjs to handle the deletion process:
+  Identifies the game to be deleted using its unique key (e.g., game_Title_Year).
+  Removes the game from localStorage using the localStorage.removeItem method.
+  Removes the game from the in-memory games array using the splice method.
+  Re-renders the game list to reflect the changes in the UI.
+This feature allows users to easily manage their game collection by removing unwanted entries.

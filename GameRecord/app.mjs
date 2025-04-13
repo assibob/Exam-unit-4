@@ -13,7 +13,7 @@ function loadGames() {
 // Render games in the UI
 function renderGames() {
     const gameContainer = document.getElementById('gameContainer');
-    gameContainer.innerHTML = ''; 
+    gameContainer.innerHTML = '';
 
     games.forEach((game, index) => {
         const gameElement = document.createElement('div');
@@ -28,16 +28,17 @@ function renderGames() {
             <p><strong>BGG Listing:</strong> <a href="${game.url}" target="_blank">${game.url}</a></p>
             <p><strong>Playcount:</strong> <span class="playcount">${game.playCount}</span> <button class="increment-button">+</button></p>
             <p><strong>Rating:</strong> <input type="range" min="1" max="10" value="${game.personalRating}" class="rating-slider"> <span class="rating-value">${game.personalRating}</span></p>
+            <button class="delete-button">Delete</button>
         `;
 
-        const incrementButton = gameElement.querySelector('.increment-button');
+                const incrementButton = gameElement.querySelector('.increment-button');
         incrementButton.addEventListener('click', () => {
             game.playCount++;
             gameElement.querySelector('.playcount').textContent = game.playCount;
             updateGameInLocalStorage(index, game);
         });
 
-        const ratingSlider = gameElement.querySelector('.rating-slider');
+                const ratingSlider = gameElement.querySelector('.rating-slider');
         const ratingValue = gameElement.querySelector('.rating-value');
         ratingSlider.addEventListener('input', () => {
             game.personalRating = parseInt(ratingSlider.value, 10);
@@ -45,8 +46,26 @@ function renderGames() {
             updateGameInLocalStorage(index, game);
         });
 
+        // Add event listener for the delete button
+        const deleteButton = gameElement.querySelector('.delete-button');
+        deleteButton.addEventListener('click', () => {
+            deleteGame(index);
+        });
+
         gameContainer.appendChild(gameElement);
     });
+}
+
+// Function to delete a game
+function deleteGame(index) {
+    const game = games[index];
+    const gameKey = `game_${game.title.replace(/\s+/g, '_')}_${game.year}`;
+
+    localStorage.removeItem(gameKey);
+
+    games.splice(index, 1);
+
+    renderGames();
 }
 
 // Handle file import and save games to localStorage
