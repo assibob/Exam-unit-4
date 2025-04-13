@@ -44,3 +44,13 @@ Made the rating slider functional. Moving the slider updates the game's personal
 Ensured that changes to the play count and rating are saved to both the in-memory games array and localStorage, so the updates persist even after refreshing the page.
 Created a helper function updateGameInLocalStorage to handle saving updated game data to localStorage whenever a change is made.
 These changes make the application more dynamic and allow users to track their game stats directly from the UI.
+
+Step 7: Adding New Games:
+Added a form in index.html to allow users to add new games to the listing.
+The form collects details like title, designer, year, players, play count, and personal rating.
+Implemented a submit event listener in app.mjs to handle form submissions:
+  Creates a new Game instance with the entered details.
+  Saves the new game to localStorage and adds it to the games array.
+  Re-renders the game list to include the newly added game.
+  Resets the form after submission for convenience.
+This feature allows users to expand their game collection directly from the UI.

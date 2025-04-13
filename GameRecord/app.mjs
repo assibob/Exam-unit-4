@@ -70,6 +70,33 @@ function handleFileImport(event) {
 
 document.getElementById('importSource').addEventListener('change', handleFileImport);
 
+// Handle adding a new game
+document.getElementById('addGameForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const newGame = new Game({
+        title: document.getElementById('title').value,
+        designer: document.getElementById('designer').value,
+        artist: document.getElementById('artist').value,
+        publisher: document.getElementById('publisher').value,
+        year: parseInt(document.getElementById('year').value, 10),
+        players: document.getElementById('players').value,
+        time: document.getElementById('time').value,
+        difficulty: document.getElementById('difficulty').value,
+        url: document.getElementById('url').value,
+        playCount: parseInt(document.getElementById('playCount').value, 10),
+        personalRating: parseInt(document.getElementById('personalRating').value, 10)
+    });
+
+    // Save the new game to localStorage and the in-memory array
+    newGame.saveToLocalStorage();
+    games.push(newGame);
+
+    renderGames();
+
+    document.getElementById('addGameForm').reset();
+});
+
 // Load games into memory when the app starts
 loadGames();
 
